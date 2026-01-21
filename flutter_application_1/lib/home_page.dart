@@ -42,8 +42,8 @@ class HomePage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                AppButton(buttontext: 'Trips'),
-                AppButton(buttontext: 'Employes'),
+                AppButton(buttontext: 'Manage Buses'),
+                AppButton(buttontext: 'Manage Employees'),
               ],
             ),
             const SizedBox(height: 25),
@@ -51,8 +51,8 @@ class HomePage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                AppButton(buttontext: 'Trips'),
-                AppButton(buttontext: 'Employes'),
+                AppButton(buttontext: 'Manage Trips'),
+                AppButton(buttontext: 'Manage Earnings and Costs'),
               ],
             ),
           ],
