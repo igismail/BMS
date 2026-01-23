@@ -39,7 +39,7 @@ class LandingPage extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(bottom: 60),
+                          padding: const EdgeInsets.only(bottom: 50),
                           child: Text(
                             "Welcome to Smart Bus Service",
                             textAlign: TextAlign.center,
@@ -64,14 +64,16 @@ class LandingPage extends StatelessWidget {
                                   ),
                                 );
                               },
+
                               backgroundColor: const Color.fromARGB(
                                 255,
                                 90,
                                 16,
                                 16,
                               ),
-                              height: 90,
-                              width: 90,
+
+                              height: 60,
+                              width: 400,
                               buttontextclr: Colors.white,
                             ),
                           ],

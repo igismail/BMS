@@ -7,14 +7,14 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffdfe4ea),
+      backgroundColor: Colors.black,
       appBar: AppBar(
         title: const Text(
           "Bus Company App",
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
-        backgroundColor: const Color.fromARGB(255, 35, 8, 100),
+        backgroundColor: const Color.fromARGB(255, 112, 19, 17),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
@@ -25,12 +25,16 @@ class HomePage extends StatelessWidget {
             const Icon(
               Icons.directions_bus,
               size: 80,
-              color: Color.fromARGB(255, 68, 63, 161),
+              color: Color.fromARGB(255, 193, 190, 190),
             ),
             const SizedBox(height: 20),
             const Text(
               "Welcome to Bus Management System",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 10),
@@ -38,54 +42,49 @@ class HomePage extends StatelessWidget {
               "Manage buses, employees and trips easily",
 
               textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.white),
             ),
-            const SizedBox(height: 50),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              //  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                AppButton(
-                  buttontext: 'Manage Buses',
-                  ontap: () {},
-                  backgroundColor: Colors.amberAccent,
-                  height: 50,
-                  width: 50,
-                  buttontextclr: Colors.white,
-                ),
-                const SizedBox(width: 16),
-                AppButton(
-                  buttontext: 'Manage Employees',
-                  ontap: () {},
-                  backgroundColor: Colors.blueAccent,
-                  height: 50,
-                  width: 50,
-                  buttontextclr: Colors.white,
-                ),
-              ],
-            ),
-            const SizedBox(height: 16),
 
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                AppButton(
-                  buttontext: 'Manage Trips',
-                  ontap: () {},
-                  backgroundColor: Colors.greenAccent,
-                  height: 50,
-                  width: 50,
-                  buttontextclr: Colors.white,
-                ),
-                const SizedBox(width: 16),
-                AppButton(
-                  buttontext: 'Manage Earnings and Costs',
-                  ontap: () {},
-                  backgroundColor: Colors.orangeAccent,
-                  height: 150,
-                  width: 150,
-                  buttontextclr: Colors.white,
-                ),
-              ],
+            SizedBox(height: 50),
+
+            AppButton(
+              buttontext: 'Manage Buses',
+              ontap: () {},
+
+              height: 30,
+              width: 400,
+              backgroundColor: const Color.fromARGB(255, 112, 19, 17),
+              buttontextclr: Colors.white,
+            ),
+            SizedBox(height: 10),
+
+            AppButton(
+              buttontext: 'Manage Employees',
+              ontap: () {},
+              backgroundColor: const Color.fromARGB(255, 112, 19, 17),
+              height: 50,
+              width: 50,
+              buttontextclr: Colors.white,
+            ),
+            SizedBox(height: 10),
+
+            AppButton(
+              buttontext: 'Manage Trips',
+              ontap: () {},
+              backgroundColor: const Color.fromARGB(255, 112, 19, 17),
+              height: 50,
+              width: 50,
+              buttontextclr: Colors.white,
+            ),
+            SizedBox(height: 10),
+
+            AppButton(
+              buttontext: 'Manage Earnings and Costs',
+              ontap: () {},
+              backgroundColor: const Color.fromARGB(255, 112, 19, 17),
+              height: 150,
+              width: 150,
+              buttontextclr: Colors.white,
             ),
           ],
         ),
