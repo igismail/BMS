@@ -7,6 +7,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffdfe4ea),
       appBar: AppBar(
         title: Text(
           "Log In Now",
@@ -19,12 +20,27 @@ class LoginPage extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(height: 190),
-            Text("Get Stratted"),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  "Get Started",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: const Color.fromARGB(255, 39, 8, 97),
+                  ),
+                  textAlign: TextAlign.left,
+                ),
+              ],
+            ),
             SizedBox(height: 10),
 
             TextField(
               decoration: InputDecoration(
-                border: OutlineInputBorder(),
+                border: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.blueGrey),
+                ),
                 hintText: "Enter Your Email",
                 labelText: "Email",
               ),
@@ -36,7 +52,25 @@ class LoginPage extends StatelessWidget {
                 hintText: "Enter Your Password",
                 labelText: "Password",
               ),
+
               obscureText: true,
+            ),
+            GestureDetector(
+              onTap: () {},
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    "Forgot Password?",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                      color: const Color.fromARGB(255, 39, 8, 97),
+                    ),
+                    textAlign: TextAlign.left,
+                  ),
+                ],
+              ),
             ),
             SizedBox(height: 25),
             GestureDetector(

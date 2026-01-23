@@ -20,6 +20,7 @@ class HomePage extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Icon(
               Icons.directions_bus,
@@ -40,19 +41,50 @@ class HomePage extends StatelessWidget {
             ),
             const SizedBox(height: 50),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.center,
+              //  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                AppButton(buttontext: 'Manage Buses'),
-                AppButton(buttontext: 'Manage Employees'),
+                AppButton(
+                  buttontext: 'Manage Buses',
+                  ontap: () {},
+                  backgroundColor: Colors.amberAccent,
+                  height: 50,
+                  width: 50,
+                  buttontextclr: Colors.white,
+                ),
+                const SizedBox(width: 16),
+                AppButton(
+                  buttontext: 'Manage Employees',
+                  ontap: () {},
+                  backgroundColor: Colors.blueAccent,
+                  height: 50,
+                  width: 50,
+                  buttontextclr: Colors.white,
+                ),
               ],
             ),
-            const SizedBox(height: 25),
+            const SizedBox(height: 16),
 
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                AppButton(buttontext: 'Manage Trips'),
-                AppButton(buttontext: 'Manage Earnings and Costs'),
+                AppButton(
+                  buttontext: 'Manage Trips',
+                  ontap: () {},
+                  backgroundColor: Colors.greenAccent,
+                  height: 50,
+                  width: 50,
+                  buttontextclr: Colors.white,
+                ),
+                const SizedBox(width: 16),
+                AppButton(
+                  buttontext: 'Manage Earnings and Costs',
+                  ontap: () {},
+                  backgroundColor: Colors.orangeAccent,
+                  height: 150,
+                  width: 150,
+                  buttontextclr: Colors.white,
+                ),
               ],
             ),
           ],

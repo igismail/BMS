@@ -2,25 +2,41 @@ import 'package:flutter/material.dart';
 
 class AppButton extends StatelessWidget {
   final String buttontext;
-  AppButton({super.key, required this.buttontext});
+  final VoidCallback ontap;
+  final Color backgroundColor;
+  final double height;
+  final double width;
+  final Color buttontextclr;
 
-  @override
+  AppButton({
+    super.key,
+    required this.buttontext,
+    required this.ontap,
+    required this.backgroundColor,
+    required this.height,
+    required this.width,
+    required this.buttontextclr,
+  });
+
   Widget build(BuildContext context) {
-    return Container(
-      width: 150,
-      height: 150,
-      decoration: BoxDecoration(
-        color: Colors.amber,
-        borderRadius: BorderRadius.circular(13),
-      ),
-      child: Center(
-        child: Text(
-          buttontext,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
+    return GestureDetector(
+      onTap: ontap,
+      child: Container(
+        width: 400,
+        height: 40,
+        decoration: BoxDecoration(
+          color: backgroundColor,
+          borderRadius: BorderRadius.circular(13),
+        ),
+        child: Center(
+          child: Text(
+            buttontext,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: const Color.fromARGB(255, 244, 242, 242),
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
       ),
