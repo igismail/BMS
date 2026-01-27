@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/app_button.dart';
+import 'package:flutter_application_1/appcons.dart';
 import 'package:flutter_application_1/login_page.dart';
 
 class LandingPage extends StatelessWidget {
@@ -14,7 +15,7 @@ class LandingPage extends StatelessWidget {
           "Smart Bus Service",
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
-        backgroundColor: const Color.fromARGB(255, 99, 15, 16),
+        backgroundColor: Appcons.themeclr,
       ),
       body: Center(
         child: Column(
@@ -39,7 +40,7 @@ class LandingPage extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(bottom: 50),
+                          padding: const EdgeInsets.only(bottom: 40),
                           child: Text(
                             "Welcome to Smart Bus Service",
                             textAlign: TextAlign.center,
@@ -65,12 +66,7 @@ class LandingPage extends StatelessWidget {
                                 );
                               },
 
-                              backgroundColor: const Color.fromARGB(
-                                255,
-                                90,
-                                16,
-                                16,
-                              ),
+                              backgroundColor: Appcons.themeclr,
 
                               height: 60,
                               width: 400,

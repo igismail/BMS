@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
-        backgroundColor: const Color.fromARGB(255, 112, 19, 17),
+        backgroundColor: const Color.fromARGB(255, 99, 15, 16),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
@@ -53,7 +53,7 @@ class HomePage extends StatelessWidget {
 
               height: 30,
               width: 400,
-              backgroundColor: const Color.fromARGB(255, 112, 19, 17),
+              backgroundColor: const Color.fromARGB(255, 99, 15, 16),
               buttontextclr: Colors.white,
             ),
             SizedBox(height: 10),
@@ -61,7 +61,7 @@ class HomePage extends StatelessWidget {
             AppButton(
               buttontext: 'Manage Employees',
               ontap: () {},
-              backgroundColor: const Color.fromARGB(255, 112, 19, 17),
+              backgroundColor: const Color.fromARGB(255, 99, 15, 16),
               height: 50,
               width: 50,
               buttontextclr: Colors.white,
@@ -71,7 +71,7 @@ class HomePage extends StatelessWidget {
             AppButton(
               buttontext: 'Manage Trips',
               ontap: () {},
-              backgroundColor: const Color.fromARGB(255, 112, 19, 17),
+              backgroundColor: const Color.fromARGB(255, 99, 15, 16),
               height: 50,
               width: 50,
               buttontextclr: Colors.white,
@@ -81,7 +81,7 @@ class HomePage extends StatelessWidget {
             AppButton(
               buttontext: 'Manage Earnings and Costs',
               ontap: () {},
-              backgroundColor: const Color.fromARGB(255, 112, 19, 17),
+              backgroundColor: const Color.fromARGB(255, 99, 15, 16),
               height: 150,
               width: 150,
               buttontextclr: Colors.white,

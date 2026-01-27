@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/admin_login.dart';
-import 'package:flutter_application_1/busticket.dart';
-import 'package:flutter_application_1/register.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+import 'package:flutter_application_1/home_page.dart';
+import 'package:flutter_application_1/login_page.dart';
+
+class AdminLogin extends StatelessWidget {
+  const AdminLogin({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class LoginPage extends StatelessWidget {
       backgroundColor: Colors.black,
       appBar: AppBar(
         title: Text(
-          "Passenger Login",
+          "Admin Login",
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
@@ -26,32 +26,8 @@ class LoginPage extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(height: 190),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return Register();
-                        },
-                      ),
-                    );
-                  },
-
-                  child: Text(
-                    "New Here? Click to Register.",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 14,
-                      fontStyle: FontStyle.italic,
-                      color: const Color.fromARGB(255, 235, 232, 239),
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
-                ),
+            Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+                
               ],
             ),
             SizedBox(height: 10),
@@ -90,8 +66,8 @@ class LoginPage extends StatelessWidget {
                       "Forgot Password?",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontStyle: FontStyle.italic,
                         fontSize: 14,
+                        fontStyle: FontStyle.italic,
                         color: const Color.fromARGB(255, 240, 240, 242),
                       ),
                       textAlign: TextAlign.left,
@@ -107,7 +83,7 @@ class LoginPage extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return Busticket();
+                      return HomePage();
                     },
                   ),
                 );
@@ -137,7 +113,7 @@ class LoginPage extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return AdminLogin();
+                        return LoginPage();
                       },
                     ),
                   );
@@ -145,7 +121,7 @@ class LoginPage extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(top: 200),
                   child: Text(
-                    "Click To Login As Admin.",
+                    "Click To Login As Custommer.",
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,

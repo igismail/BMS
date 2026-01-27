@@ -8,7 +8,7 @@ class AppButton extends StatelessWidget {
   final double width;
   final Color buttontextclr;
 
-  AppButton({
+  const AppButton({
     super.key,
     required this.buttontext,
     required this.ontap,
@@ -18,6 +18,7 @@ class AppButton extends StatelessWidget {
     required this.buttontextclr,
   });
 
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: ontap,

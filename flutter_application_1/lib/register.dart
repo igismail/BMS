@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/admin_login.dart';
 import 'package:flutter_application_1/busticket.dart';
-import 'package:flutter_application_1/register.dart';
+import 'package:flutter_application_1/login_page.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class Register extends StatelessWidget {
+  const Register({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class LoginPage extends StatelessWidget {
       backgroundColor: Colors.black,
       appBar: AppBar(
         title: Text(
-          "Passenger Login",
+          "Register Now",
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
@@ -35,17 +35,17 @@ class LoginPage extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) {
-                          return Register();
+                          return LoginPage();
                         },
                       ),
                     );
                   },
 
                   child: Text(
-                    "New Here? Click to Register.",
+                    "Already Have an Account? Click to Login",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 14,
+                      fontSize: 12,
                       fontStyle: FontStyle.italic,
                       color: const Color.fromARGB(255, 235, 232, 239),
                     ),
@@ -120,7 +120,7 @@ class LoginPage extends StatelessWidget {
                 width: 150,
                 child: Center(
                   child: Text(
-                    "LOGIN",
+                    "Register",
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -145,7 +145,7 @@ class LoginPage extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(top: 200),
                   child: Text(
-                    "Click To Login As Admin.",
+                    "Already Have an Account? Click to Login",
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
