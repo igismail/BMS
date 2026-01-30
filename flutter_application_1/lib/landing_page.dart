@@ -13,7 +13,11 @@ class LandingPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text(
           "Smart Bus Service",
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontStyle: FontStyle.italic,
+          ),
         ),
         backgroundColor: Appcons.themeclr,
       ),
@@ -47,6 +51,7 @@ class LandingPage extends StatelessWidget {
                             style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.w100,
+                              fontStyle: FontStyle.italic,
 
                               fontSize: 20,
                             ),
