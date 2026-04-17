@@ -1,92 +1,449 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/app_button.dart';
+import 'booking_page.dart';
+import 'ticket_management_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
+
+  static const _brand = Color(0xFF630F10);
+
+  static const _stats = [
+    {'label': 'Buses', 'value': '24'},
+    {'label': 'Employees', 'value': '58'},
+    {'label': 'Active trips', 'value': '12'},
+    {'label': 'Tickets sold', 'value': '134'},
+  ];
+
+  static const _cards = [
+    {
+      'title': 'Buses',
+      'sub': 'Fleet & maintenance',
+      'icon': Icons.directions_bus,
+    },
+    {'title': 'Employees', 'sub': 'Drivers & staff', 'icon': Icons.people},
+    {'title': 'Trips', 'sub': 'Routes & schedules', 'icon': Icons.route},
+    {
+      'title': 'Ticket Management',
+      'sub': 'Sales & validation',
+      'icon': Icons.confirmation_number,
+    },
+    {'title': 'Earnings', 'sub': 'Revenue & costs', 'icon': Icons.attach_money},
+    {'title': 'Passengers', 'sub': 'Bookings & records', 'icon': Icons.badge},
+    {'title': 'Settings', 'sub': 'App configuration', 'icon': Icons.settings},
+  ];
+
+  static const _alerts = [
+    {'msg': 'Bus #14 maintenance due in 3 days', 'warn': true},
+    {'msg': 'Trip #7 completed — Dhaka → Ctg', 'warn': false},
+    {'msg': '3 tickets pending validation today', 'warn': true},
+    {'msg': 'Ticket TK-012 cancelled by passenger', 'warn': false},
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        title: const Text(
-          "Bus Company App",
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        ),
+        backgroundColor: _brand,
         centerTitle: true,
-        backgroundColor: const Color.fromARGB(255, 99, 15, 16),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
+        title: const Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(
-              Icons.directions_bus,
-              size: 80,
-              color: Color.fromARGB(255, 193, 190, 190),
-            ),
-            const SizedBox(height: 20),
-            const Text(
-              "Welcome to Bus Management System",
+            Icon(Icons.directions_bus, color: Colors.white, size: 20),
+            SizedBox(width: 8),
+            Text(
+              'Bus Company App',
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 20,
                 fontWeight: FontWeight.bold,
+                fontStyle: FontStyle.italic,
               ),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 10),
-            const Text(
-              "Manage buses, employees and trips easily",
-
-              textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.white),
-            ),
-
-            SizedBox(height: 50),
-
-            AppButton(
-              buttontext: 'Manage Buses',
-              ontap: () {},
-
-              height: 30,
-              width: 400,
-              backgroundColor: const Color.fromARGB(255, 99, 15, 16),
-              buttontextclr: Colors.white,
-            ),
-            SizedBox(height: 10),
-
-            AppButton(
-              buttontext: 'Manage Employees',
-              ontap: () {},
-              backgroundColor: const Color.fromARGB(255, 99, 15, 16),
-              height: 50,
-              width: 50,
-              buttontextclr: Colors.white,
-            ),
-            SizedBox(height: 10),
-
-            AppButton(
-              buttontext: 'Manage Trips',
-              ontap: () {},
-              backgroundColor: const Color.fromARGB(255, 99, 15, 16),
-              height: 50,
-              width: 50,
-              buttontextclr: Colors.white,
-            ),
-            SizedBox(height: 10),
-
-            AppButton(
-              buttontext: 'Manage Earnings and Costs',
-              ontap: () {},
-              backgroundColor: const Color.fromARGB(255, 99, 15, 16),
-              height: 150,
-              width: 150,
-              buttontextclr: Colors.white,
             ),
           ],
+        ),
+        actions: [
+          // Quick access to ticket scan from home
+          IconButton(
+            icon: const Icon(Icons.qr_code_scanner, color: Colors.white),
+            tooltip: 'Scan & validate ticket',
+            onPressed: () => _openTicketPage(context),
+          ),
+        ],
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildHero(),
+            const SizedBox(height: 24),
+            _buildStats(),
+            const SizedBox(height: 28),
+            _buildSectionLabel('Management'),
+            const SizedBox(height: 12),
+            _buildCardGrid(context),
+            const SizedBox(height: 28),
+            _buildSectionLabel('Recent alerts'),
+            const SizedBox(height: 12),
+            _buildAlerts(),
+            const SizedBox(height: 24),
+            _buildTicketQuickActions(context),
+            const SizedBox(height: 24),
+          ],
+        ),
+      ),
+    );
+  }
+
+  // ── Hero ─────────────────────────────────────────────────────────────────
+  Widget _buildHero() {
+    return Center(
+      child: Column(
+        children: [
+          Container(
+            width: 72,
+            height: 72,
+            decoration: const BoxDecoration(
+              color: Color(0xFF1E1E1E),
+              shape: BoxShape.circle,
+            ),
+            child: const Icon(
+              Icons.directions_bus,
+              size: 36,
+              color: Color(0xFFC1BEBE),
+            ),
+          ),
+          const SizedBox(height: 14),
+          const Text(
+            'Welcome to Bus Management System',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              fontStyle: FontStyle.italic,
+            ),
+          ),
+          const SizedBox(height: 6),
+          const Text(
+            'Manage buses, employees, trips and tickets',
+            textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.white54, fontSize: 13),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // ── Stats ─────────────────────────────────────────────────────────────────
+  Widget _buildStats() {
+    return GridView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: _stats.length,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        mainAxisSpacing: 8,
+        crossAxisSpacing: 8,
+        childAspectRatio: 2.8,
+      ),
+      itemBuilder: (_, i) {
+        return Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+          decoration: BoxDecoration(
+            color: const Color(0xFF1E1E1E),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Row(
+            children: [
+              Text(
+                _stats[i]['value']!,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(width: 8),
+              Text(
+                _stats[i]['label']!,
+                style: const TextStyle(color: Colors.white38, fontSize: 11),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  // ── Section label ─────────────────────────────────────────────────────────
+  Widget _buildSectionLabel(String text) {
+    return Text(
+      text.toUpperCase(),
+      style: const TextStyle(
+        color: Colors.white38,
+        fontSize: 11,
+        fontWeight: FontWeight.w600,
+        letterSpacing: 1.0,
+      ),
+    );
+  }
+
+  // ── Card grid ─────────────────────────────────────────────────────────────
+  Widget _buildCardGrid(BuildContext context) {
+    return GridView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: _cards.length,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        mainAxisSpacing: 10,
+        crossAxisSpacing: 10,
+        childAspectRatio: 1.55,
+      ),
+      itemBuilder: (_, i) => _NavCard(
+        title: _cards[i]['title'] as String,
+        subtitle: _cards[i]['sub'] as String,
+        icon: _cards[i]['icon'] as IconData,
+        highlight: _cards[i]['title'] == 'Ticket Management',
+        onTap: () => _onCardTap(context, _cards[i]['title'] as String),
+      ),
+    );
+  }
+
+  // ── Alerts ────────────────────────────────────────────────────────────────
+  Widget _buildAlerts() {
+    return Column(
+      children: _alerts.map((a) {
+        final isWarn = a['warn'] as bool;
+        return Container(
+          margin: const EdgeInsets.only(bottom: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+          decoration: BoxDecoration(
+            color: const Color(0xFF1E1E1E),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Row(
+            children: [
+              Container(
+                width: 8,
+                height: 8,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: isWarn
+                      ? const Color(0xFFE8A020)
+                      : const Color(0xFF2E9E5E),
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Text(
+                  a['msg'] as String,
+                  style: const TextStyle(color: Colors.white70, fontSize: 13),
+                ),
+              ),
+            ],
+          ),
+        );
+      }).toList(),
+    );
+  }
+
+  // ── Ticket quick-action strip ─────────────────────────────────────────────
+  Widget _buildTicketQuickActions(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildSectionLabel('Ticket quick actions'),
+        const SizedBox(height: 12),
+        Row(
+          children: [
+            _QuickActionBtn(
+              icon: Icons.add_circle_outline,
+              label: 'Issue ticket',
+              color: const Color(0xFF2E9E5E),
+              onTap: () => _openTicketPage(context, action: 'add'),
+            ),
+            const SizedBox(width: 10),
+            _QuickActionBtn(
+              icon: Icons.qr_code_scanner,
+              label: 'Validate',
+              color: const Color(0xFF378ADD),
+              onTap: () => _openTicketPage(context, action: 'scan'),
+            ),
+            const SizedBox(width: 10),
+            _QuickActionBtn(
+              icon: Icons.list_alt,
+              label: 'All tickets',
+              color: const Color(0xFFE8A020),
+              onTap: () => _openTicketPage(context),
+            ),
+            const SizedBox(width: 10),
+            _QuickActionBtn(
+              icon: Icons.cancel_outlined,
+              label: 'Cancellations',
+              color: const Color(0xFFE24B4A),
+              onTap: () => _openTicketPage(context, action: 'cancelled'),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  // ── Navigation handlers ───────────────────────────────────────────────────
+  void _onCardTap(BuildContext context, String title) {
+    switch (title) {
+      case 'Ticket Management':
+        _openTicketPage(context);
+        break;
+      // TODO: add other pages here
+      // case 'Buses': Navigator.push(context, MaterialPageRoute(builder: (_) => const BusesPage())); break;
+      default:
+        break;
+    }
+  }
+
+  void _openTicketPage(BuildContext context, {String? action}) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => TicketManagementPage(initialAction: action),
+      ),
+    );
+  }
+}
+
+// ── NavCard ───────────────────────────────────────────────────────────────────
+class _NavCard extends StatelessWidget {
+  const _NavCard({
+    required this.title,
+    required this.subtitle,
+    required this.icon,
+    required this.onTap,
+    this.highlight = false,
+  });
+
+  final String title;
+  final String subtitle;
+  final IconData icon;
+  final VoidCallback onTap;
+  final bool highlight;
+
+  static const _brand = Color(0xFF630F10);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(14),
+        decoration: BoxDecoration(
+          color: const Color(0xFF1E1E1E),
+          borderRadius: BorderRadius.circular(14),
+          border: highlight
+              ? Border.all(color: _brand.withOpacity(0.6), width: 1.5)
+              : Border.all(color: Colors.transparent),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Container(
+                  width: 36,
+                  height: 36,
+                  decoration: BoxDecoration(
+                    color: _brand,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Icon(icon, color: Colors.white, size: 18),
+                ),
+                const Spacer(),
+                if (highlight)
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 6,
+                      vertical: 2,
+                    ),
+                    decoration: BoxDecoration(
+                      color: _brand.withOpacity(0.2),
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    child: const Text(
+                      'NEW',
+                      style: TextStyle(
+                        color: Color(0xFFFF6B6B),
+                        fontSize: 9,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 0.5,
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+            const Spacer(),
+            Text(
+              title,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 13,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            const SizedBox(height: 2),
+            Text(
+              subtitle,
+              style: const TextStyle(color: Colors.white38, fontSize: 11),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// ── QuickActionBtn ────────────────────────────────────────────────────────────
+class _QuickActionBtn extends StatelessWidget {
+  const _QuickActionBtn({
+    required this.icon,
+    required this.label,
+    required this.color,
+    required this.onTap,
+  });
+
+  final IconData icon;
+  final String label;
+  final Color color;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 12),
+          decoration: BoxDecoration(
+            color: color.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: color.withOpacity(0.3)),
+          ),
+          child: Column(
+            children: [
+              Icon(icon, color: color, size: 22),
+              const SizedBox(height: 5),
+              Text(
+                label,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: color,
+                  fontSize: 10,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

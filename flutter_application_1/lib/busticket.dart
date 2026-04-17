@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import 'seatSelectionPage.dart';
 
 class Busticket extends StatelessWidget {
   const Busticket({super.key});
@@ -28,7 +29,15 @@ class Busticket extends StatelessWidget {
 
                 child: GestureDetector(
                   onTap: () {
-                    print("hlw wld");
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => BookingConfirmationPage(
+                          selectedSeats: [],
+                          totalAmount: 100.0, name: '', phone: '',
+                        ),
+                      ),
+                    );
                   },
                   child: Container(
                     width: double.infinity,

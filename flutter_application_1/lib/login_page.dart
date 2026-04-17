@@ -11,12 +11,17 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text(
-          "Passenger Login",
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontStyle: FontStyle.italic,
+        centerTitle: true,
+        title: Center(
+          child: Center(
+            child: Text(
+              "Passenger Login",
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontStyle: FontStyle.italic,
+              ),
+            ),
           ),
         ),
         backgroundColor: const Color.fromARGB(255, 99, 15, 16),
