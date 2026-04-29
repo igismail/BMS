@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import 'seatSelectionPage.dart';
+
+import 'bookingconfimationpage.dart';
 
 class Busticket extends StatelessWidget {
   const Busticket({super.key});
@@ -26,7 +27,6 @@ class Busticket extends StatelessWidget {
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.only(bottom: 12.0),
-
                 child: GestureDetector(
                   onTap: () {
                     Navigator.push(
@@ -34,7 +34,9 @@ class Busticket extends StatelessWidget {
                       MaterialPageRoute(
                         builder: (_) => BookingConfirmationPage(
                           selectedSeats: [],
-                          totalAmount: 100.0, name: '', phone: '',
+                          totalAmount: 100.0,
+                          name: '',
+                          phone: '',
                         ),
                       ),
                     );
@@ -81,7 +83,6 @@ class Busticket extends StatelessWidget {
                                     fontSize: 20.sp,
                                   ),
                                 ),
-
                                 Text("12:39 AM"),
                               ],
                             ),
@@ -96,7 +97,6 @@ class Busticket extends StatelessWidget {
                                     fontSize: 20.sp,
                                   ),
                                 ),
-
                                 Text("12:39 AM"),
                               ],
                             ),

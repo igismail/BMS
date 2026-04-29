@@ -1,6 +1,19 @@
 import 'package:flutter/material.dart';
-import 'booking_page.dart';
-import 'ticket_management_page.dart';
+import 'ticketManagementPage.dart';
+import 'manage_buses.dart';
+import 'manage_employee.dart';
+import 'manage_trips.dart';
+import 'manage_costs.dart';
+
+// ── Admin Home Page ────────────────────────────────────────────────────────────
+//
+// The main dashboard shown after admin login.
+// Contains:
+//  • A hero welcome section
+//  • Stats strip (buses, employees, active trips, tickets sold)
+//  • A 2-column card grid — each card navigates to its management page
+//  • Recent alerts list
+//  • Ticket quick-action buttons at the bottom
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -29,7 +42,6 @@ class HomePage extends StatelessWidget {
     },
     {'title': 'Earnings', 'sub': 'Revenue & costs', 'icon': Icons.attach_money},
     {'title': 'Passengers', 'sub': 'Bookings & records', 'icon': Icons.badge},
-    {'title': 'Settings', 'sub': 'App configuration', 'icon': Icons.settings},
   ];
 
   static const _alerts = [
@@ -62,7 +74,6 @@ class HomePage extends StatelessWidget {
           ],
         ),
         actions: [
-          // Quick access to ticket scan from home
           IconButton(
             icon: const Icon(Icons.qr_code_scanner, color: Colors.white),
             tooltip: 'Scan & validate ticket',
@@ -95,7 +106,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  // ── Hero ─────────────────────────────────────────────────────────────────
+  // ── Hero ──────────────────────────────────────────────────────────────────
   Widget _buildHero() {
     return Center(
       child: Column(
@@ -147,32 +158,30 @@ class HomePage extends StatelessWidget {
         crossAxisSpacing: 8,
         childAspectRatio: 2.8,
       ),
-      itemBuilder: (_, i) {
-        return Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-          decoration: BoxDecoration(
-            color: const Color(0xFF1E1E1E),
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Row(
-            children: [
-              Text(
-                _stats[i]['value']!,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
+      itemBuilder: (_, i) => Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+        decoration: BoxDecoration(
+          color: const Color(0xFF1E1E1E),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Row(
+          children: [
+            Text(
+              _stats[i]['value']!,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
               ),
-              const SizedBox(width: 8),
-              Text(
-                _stats[i]['label']!,
-                style: const TextStyle(color: Colors.white38, fontSize: 11),
-              ),
-            ],
-          ),
-        );
-      },
+            ),
+            const SizedBox(width: 8),
+            Text(
+              _stats[i]['label']!,
+              style: const TextStyle(color: Colors.white38, fontSize: 11),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -291,14 +300,40 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  // ── Navigation handlers ───────────────────────────────────────────────────
+  // ── Navigation ────────────────────────────────────────────────────────────
   void _onCardTap(BuildContext context, String title) {
     switch (title) {
+      case 'Buses':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const ManageBuses()),
+        );
+        break;
+      case 'Employees':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const ManageEmployee()),
+        );
+        break;
+      case 'Trips':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const ManageTrips()),
+        );
+        break;
       case 'Ticket Management':
         _openTicketPage(context);
         break;
-      // TODO: add other pages here
-      // case 'Buses': Navigator.push(context, MaterialPageRoute(builder: (_) => const BusesPage())); break;
+      case 'Earnings':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const ManageCosts()),
+        );
+        break;
+      case 'Passengers':
+        // Shows the ticket list filtered to passengers
+        _openTicketPage(context);
+        break;
       default:
         break;
     }
@@ -314,7 +349,7 @@ class HomePage extends StatelessWidget {
   }
 }
 
-// ── NavCard ───────────────────────────────────────────────────────────────────
+// ── Nav Card ──────────────────────────────────────────────────────────────────
 class _NavCard extends StatelessWidget {
   const _NavCard({
     required this.title,
@@ -403,7 +438,7 @@ class _NavCard extends StatelessWidget {
   }
 }
 
-// ── QuickActionBtn ────────────────────────────────────────────────────────────
+// ── Quick Action Button ───────────────────────────────────────────────────────
 class _QuickActionBtn extends StatelessWidget {
   const _QuickActionBtn({
     required this.icon,
